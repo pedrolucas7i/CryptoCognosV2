@@ -39,8 +39,8 @@ def crypto_data():
     fig.update_layout(
         title=f"Preço do {crypto_id.capitalize()} nos últimos {days} dias",
         template="plotly_dark",
-        plot_bgcolor="#34495e",
-        paper_bgcolor="#2c3e50"
+        plot_bgcolor="black",
+        paper_bgcolor="black"
     )
     
     graphJSON = fig.to_json()
