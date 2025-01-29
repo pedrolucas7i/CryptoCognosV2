@@ -1,5 +1,6 @@
 coinpaprika-sdk
 flask
 pandas
+pandas_ta
 plotly
 requests

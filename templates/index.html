@@ -25,9 +25,40 @@
                     <option value="30">30 Dias</option>
                     <option value="90">90 Dias</option>
                 </select>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <h6>Price (USD)</h6>
+                        <br>
+                        <p>{{ price }}</p>
+                    </div>
+
+                    <div class="col">
+                        <h6>Volume (24h)</h6>
+                        <br>
+                        <p>{{ volume }}</p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <p>Website</p>
+                    </div>
+
+                    <div class="col-4">
+                        <p>{{ website }}</p>
+                    </div>
+                </div>
             </div>
             <div class="container-fluid border col-8" style="width: 75vw;">
                 <div class="" id="crypto-graph"></div>
+                <div>
+                    <h2 id="coin-name"></h2>
+                </div>
+                <div>
+                    <h4 id="indication">Keep</h4>
+                    <p id="percentage-of-certainty-of-indication">90% Certainty</p>
+                </div>
             </div>
         </div>
     </div>
@@ -36,11 +67,17 @@
         function fetchCryptoData() {
             var crypto = $("#crypto-select").val();
             var days = $("#days-select").val();
+            
             $.getJSON(`/crypto-data?crypto=${crypto}&days=${days}`, function(data) {
-                var graph = JSON.parse(data);
+                var graph = JSON.parse(data.graph);
                 Plotly.react('crypto-graph', graph.data, graph.layout);
+
+                $("#indication").text(data.indication);
+                $("#percentage-of-certainty-of-indication").text(data.certainty);
             });
         }
+
+
 
         $(document).ready(function() {
             fetchCryptoData();
