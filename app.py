@@ -153,7 +153,7 @@ def crypto_data():
         y=price_values,
         mode='lines',
         name=crypto_id.capitalize(),
-        line=dict(color='#3498db', width=2),
+        line=dict(color='#ff0000' if indication == "SELL 📉" else ('#008000' if indication == "BUY 🚀" else '#3498db'), width=1.5),
         text=[f"{val:.2f}" for val in price_values],
         textposition="top center"
     ))

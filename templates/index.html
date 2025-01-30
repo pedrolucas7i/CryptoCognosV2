@@ -201,13 +201,13 @@
                 </select>
                 <br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col text-center">
                         <h6>Price (USD)</h6>
                         <br>
                         <p id="price">Loading...</p>  <!-- ✅ Updated -->
                     </div>
 
-                    <div class="col">
+                    <div class="col text-center">
                         <h6>Volume</h6>
                         <br>
                         <p id="volume">Loading...</p>  <!-- ✅ Updated -->
@@ -217,8 +217,8 @@
                     <div class="col-8">
                         <p>Website</p>
                     </div>
-                    <div class="col-4">
-                        <p id="website">-</p>  <!-- ✅ Updated -->
+                    <div class="col-4 text-center">
+                        <p id="website text-center">-</p>  <!-- ✅ Updated -->
                     </div>
                 </div>
             </div>
@@ -257,6 +257,7 @@
                 // ✅ Update recommendation and certainty
                 $("#indication").text(data.indication);
                 $("#percentage-of-certainty-of-indication").text(data.certainty);
+                $("#coin-name").text(crypto);
             }).fail(function() {
                 $("#error-message").text("Error fetching data from API.");
             });
@@ -267,9 +268,17 @@
             const urlParams = new URLSearchParams(window.location.search);
             const cryptoFromUrl = urlParams.get('crypto') || 'bitcoin'; // Default to 'bitcoin'
             const days = '1'; // Default days
-
+            
             // Set the initial coin name
             $("#coin-name").text(cryptoFromUrl.charAt(0).toUpperCase() + cryptoFromUrl.slice(1));
+
+            $("#crypto-select, #days-select").change(function(e) {
+                e.preventDefault();
+                const coin = $('#crypto-select').val().toLowerCase().trim();
+                const days2 = $('#days-select').val().toLowerCase().trim();
+                fetchCryptoData(coin, days2);
+            });
+            setInterval(fetchCryptoData, 20000);
 
             // Fetch the data for the selected crypto
             fetchCryptoData(cryptoFromUrl, days);
@@ -280,28 +289,7 @@
             e.preventDefault();  // Impede o envio normal do formulário
             
             const searchTerm = $('#search-input').val().toLowerCase().trim();
-            $.getJSON(`/crypto-data?crypto=${searchTerm}&days=7`, function(data) {
-                if (data.error) {
-                    $("#error-message").text(data.error);
-                    return;
-                }
-
-                // ✅ Atualize os valores conforme necessário
-                $("#price").text(parseFloat(data.price).toFixed(2) + " USD");
-                $("#volume").text(parseFloat(data.volume).toFixed(2) + " USD");
-
-                // ✅ Atualize o gráfico
-                var graph = JSON.parse(data.graph);
-                Plotly.react('crypto-graph', graph.data, graph.layout);
-
-                // ✅ Atualize recomendação e certeza
-                $("#indication").text(data.indication);
-                $("#percentage-of-certainty-of-indication").text(data.certainty);
-                $("#crypto-select").val(searchTerm)
-                $("#days-select").val("7")
-            }).fail(function() {
-                $("#error-message").text("Erro ao buscar dados da API.");
-            });
+            fetchCryptoData(searchTerm, 7)
         });
 
     </script>
