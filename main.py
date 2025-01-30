@@ -22,8 +22,6 @@ def get_crypto_data(crypto_id, days):
         error = "Error 429: API request limit exceeded."
         print("Erro 429: Limite de requisições excedido.")
         print("Mensagem:", response['status'].get('error_message'))
-    else:
-        print("Resposta recebida com sucesso:", response)
         
     df = pd.DataFrame()
     #print("Raw API Response:", response)  # Debugging output to see raw API response
@@ -77,7 +75,7 @@ def get_crypto_data(crypto_id, days):
 def crypto_data():
     
     crypto_id = request.args.get('crypto', 'bitcoin')
-    days = request.args.get('days', 7, type=int)
+    days = request.args.get('days', 1, type=int)
 
     df, timestamps, price_values = get_crypto_data(crypto_id, days)
 
@@ -155,7 +153,7 @@ def crypto_data():
         y=price_values,
         mode='lines',
         name=crypto_id.capitalize(),
-        line=dict(color='#3498db', width=3),
+        line=dict(color='#3498db', width=2),
         text=[f"{val:.2f}" for val in price_values],
         textposition="top center"
     ))

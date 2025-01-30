@@ -4,26 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>CryptoCognos Dashboard</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CryptoCognos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Crypto View
+                          <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <form class="d-flex" id="search-form">
+                    <input class="form-control me-sm-2 bg-transparent border-white" type="search" placeholder="Search" id="search-input">
+                    <button class="btn btn-secondary my-2 my-sm-0 bg-black border-black" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
     <div class="container-fluid border">
         <div class="row">
             <div class="container-fluid border col-4" style="width: 24vw;">
                 <!-- Dropdown to select cryptocurrency -->
                 <select id="crypto-select" class="form-select">
-                    <option value="bitcoin" selected>Bitcoin</option>
-                    <option value="ethereum">Ethereum</option>
-                    <option value="ripple">Ripple</option>
-                    <option value="dogecoin">Dogecoin</option>
-                    <option value="litecoin">Litecoin</option>
+                    <option value="bitcoin" selected>
+                        <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="Bitcoin" style="width: 16px; height: 16px;">
+                        Bitcoin (BTC)
+                    </option>
+                    <option value="ethereum">
+                        <img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="Ethereum" style="width: 16px; height: 16px;">
+                        Ethereum (ETH)
+                    </option>
+                    <option value="ripple">
+                        <img src="https://assets.coingecko.com/coins/images/44/small/xrp.png" alt="Ripple" style="width: 16px; height: 16px;">
+                        Ripple (XRP)
+                    </option>
+                    <option value="tether">
+                        <img src="https://assets.coingecko.com/coins/images/325/small/Tether-logo.png" alt="Tether" style="width: 16px; height: 16px;">
+                        Tether (USDT)
+                    </option>
+                    <option value="solana">
+                        <img src="https://assets.coingecko.com/coins/images/4128/small/solana.png" alt="Solana" style="width: 16px; height: 16px;">
+                        Solana (SOL)
+                    </option>
+                    <option value="dogecoin">
+                        <img src="https://assets.coingecko.com/coins/images/5/small/dogecoin.png" alt="Dogecoin" style="width: 16px; height: 16px;">
+                        Dogecoin (DOGE)
+                    </option>
+                    <option value="usd-coin">
+                        <img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png" alt="USD Coin" style="width: 16px; height: 16px;">
+                        USD Coin (USDC)
+                    </option>
+                    <option value="cardano">
+                        <img src="https://assets.coingecko.com/coins/images/975/small/cardano.png" alt="Cardano" style="width: 16px; height: 16px;">
+                        Cardano (ADA)
+                    </option>
+                    <option value="staked-ether">
+                        <img src="https://assets.coingecko.com/coins/images/13442/small/steth.png" alt="Lido Staked Ether" style="width: 16px; height: 16px;">
+                        Lido Staked Ether (STETH)
+                    </option>
+                    <option value="tron">
+                        <img src="https://assets.coingecko.com/coins/images/1094/small/tron-logo.png" alt="TRON" style="width: 16px; height: 16px;">
+                        TRON (TRX)
+                    </option>
+                    <option value="polkadot">
+                        <img src="https://assets.coingecko.com/coins/images/12171/small/polkadot.png" alt="Polkadot" style="width: 16px; height: 16px;">
+                        Polkadot (DOT)
+                    </option>
+                    <option value="polygon">
+                        <img src="https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png" alt="Polygon" style="width: 16px; height: 16px;">
+                        Polygon (MATIC)
+                    </option>
+                    <option value="litecoin">
+                        <img src="https://assets.coingecko.com/coins/images/2/small/litecoin.png" alt="Litecoin" style="width: 16px; height: 16px;">
+                        Litecoin (LTC)
+                    </option>
+                    <option value="shiba-inu">
+                        <img src="https://assets.coingecko.com/coins/images/11939/small/shiba.png" alt="Shiba Inu" style="width: 16px; height: 16px;">
+                        Shiba Inu (SHIB)
+                    </option>
+                    <option value="avalanche">
+                        <img src="https://assets.coingecko.com/coins/images/12559/small/coin-round-red.png" alt="Avalanche" style="width: 16px; height: 16px;">
+                        Avalanche (AVAX)
+                    </option>
+                    <option value="dai">
+                        <img src="https://assets.coingecko.com/coins/images/9956/small/4943.png" alt="Dai" style="width: 16px; height: 16px;">
+                        Dai (DAI)
+                    </option>
+                    <option value="wrapped-bitcoin">
+                        <img src="https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png" alt="Wrapped Bitcoin" style="width: 16px; height: 16px;">
+                        Wrapped Bitcoin (WBTC)
+                    </option>
+                    <option value="uniswap">
+                        <img src="https://assets.coingecko.com/coins/images/12504/small/uniswap-uni.png" alt="Uniswap" style="width: 16px; height: 16px;">
+                        Uniswap (UNI)
+                    </option>
+                    <option value="chainlink">
+                        <img src="https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png" alt="Chainlink" style="width: 16px; height: 16px;">
+                        Chainlink (LINK)
+                    </option>
+                    <option value="leo-token">
+                        <img src="https://assets.coingecko.com/coins/images/8418/small/leo-token.png" alt="LEO Token" style="width: 16px; height: 16px;">
+                        LEO Token (LEO)
+                    </option>
+                    <option value="cosmos">
+                        <img src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png" alt="Cosmos Hub" style="width: 16px; height: 16px;">
+                        Cosmos Hub (ATOM)
+                    </option>
+                    <option value="monero">
+                        <img src="https://assets.coingecko.com/coins/images/69/small/monero_logo.png" alt="Monero" style="width: 16px; height: 16px;">
+                        Monero (XMR)
+                    </option>
+                    <option value="ethereum-classic">
+                        <img src="https://assets.coingecko.com/coins/images/453/small/ethereum-classic-logo.png" alt="Ethereum Classic" style="width: 16px; height: 16px;">
+                        Ethereum Classic (ETC)
+                    </option>
+                    <option value="stellar">
+                        <img src="https://assets.coingecko.com/coins/images/100/small/Stellar_symbol_black_RGB.png" alt="Stellar" style="width: 16px; height: 16px;">
+                        Stellar (XLM)
+                    </option>
+                    <option value="okb">
+                        <img src="https://assets.coingecko.com/coins/images/4463/small/WeChat_Image_20220118095654.png" alt="OKB" style="width: 16px; height: 16px;">
+                        OKB (OKB)
+                    </option>
+                    <option value="internet-computer">
+                        <img src="https://assets.coingecko.com/coins/images/14495/small/Internet_Computer_logo.png" alt="Internet Computer" style="width: 16px; height: 16px;">
+                        Internet Computer (ICP)
+                    </option>
+                    <option value="filecoin">
+                        <img src="https://assets.coingecko.com/coins/images/12817/small/filecoin.png" alt="Filecoin" style="width: 16px; height: 16px;">
+                        Filecoin (FIL)
+                    </option>
+                    <option value="hedera">
+                        <img src="https://assets.coingecko.com/coins/images/3688/small/hbar.png" alt="Hedera" style="width: 16px; height: 16px;">
+                        Hedera (HBAR)
+                    </option>
+                    <option value="lido-dao">
+                        <img src="https://assets.coingecko.com/coins/images/13573/small/Lido_DAO.png" alt="Lido DAO" style="width: 16px; height: 16px;">
+                        Lido DAO (LDO)
+                    </option>
+                    <option value="quant">
+                        <img src="https://assets.coingecko.com/coins/images/12045/small/quant.png" alt="Quant" style="width: 16px; height: 16px;">
+                        Quant (QNT)
+                    </option>
+                    <option value="cronos">
+                        <img src="https://assets.coingecko.com/coins/images/7310/small/cro_token_logo.png" alt="Cronos" style="width: 16px; height: 16px;">
+                        Cronos (CRO)
+                    </option>
+                    <option value="vechain">
+                        <img src="https://assets.coingecko.com/coins/images/2069/small/VEN.png" alt="VeChain" style="width: 16px; height: 16px;">
+                        VeChain (VET)
+                    </option>
+                    <option value="aptos">
+                        <img src="https://assets.coingecko.com/coins/images/26455/small/aptos_round.png" alt="Aptos" style="width: 16px; height: 16px;">
+                        Aptos (APT)
+                    </option>
+                    <option value="maker">
+                        <img src="https://assets.coingecko.com/coins/images/1364/small/Mark_Maker.png" alt="Maker" style="width: 16px; height: 16px;">
+                        Maker (MKR)
+                    </option>
+                    <option value="algorand">
+                        <img src="https://assets.coingecko.com/coins/images/4380/small/download.png" alt="Algorand" style="width: 16px; height: 16px;">
+                        Algorand (ALGO)
+                    </option>
+                    <option value="the-graph">
+                        <img src="https://assets.coingecko.com/coins/images/13397/small/Graph_Token.png" alt="The Graph" style="width: 16px; height: 16px;">
+                        The Graph (GRT)
+                    </option>
+                    <option value="aave">
+                        <img src="https://assets.coingecko.com/coins/images/12645/small/AAVE.png" alt="Aave" style="width: 16px; height: 16px;">
+                        Aave (AAVE)
+                    </option>
                 </select>
                 <!-- Dropdown to select time range -->
                 <select id="days-select" class="form-select mt-2">
+                    <option value="1" selected>1 Day</option>
                     <option value="3">3 Days</option>
-                    <option value="7" selected>7 Days</option>
+                    <option value="7">7 Days</option>
                     <option value="30">30 Days</option>
                     <option value="90">90 Days</option>
                 </select>
@@ -67,10 +239,7 @@
     </div>
 
     <script>
-        function fetchCryptoData() {
-            var crypto = $("#crypto-select").val();
-            var days = $("#days-select").val();
-
+        function fetchCryptoData(crypto, days) {
             $.getJSON(`/crypto-data?crypto=${crypto}&days=${days}`, function(data) {
                 if (data.error) {
                     $("#error-message").text(data.error);
@@ -94,10 +263,47 @@
         }
 
         $(document).ready(function() {
-            fetchCryptoData();  // ✅ Fetch data initially
-            $("#crypto-select, #days-select").change(fetchCryptoData);  // ✅ Update on selection change
-            setInterval(fetchCryptoData, 20000);  // ✅ Refresh every 20 seconds
+            // Get crypto from URL and fetch data
+            const urlParams = new URLSearchParams(window.location.search);
+            const cryptoFromUrl = urlParams.get('crypto') || 'bitcoin'; // Default to 'bitcoin'
+            const days = '1'; // Default days
+
+            // Set the initial coin name
+            $("#coin-name").text(cryptoFromUrl.charAt(0).toUpperCase() + cryptoFromUrl.slice(1));
+
+            // Fetch the data for the selected crypto
+            fetchCryptoData(cryptoFromUrl, days);
         });
+        
+        // On search form submit
+        $('#search-form').submit(function(e) {
+            e.preventDefault();  // Impede o envio normal do formulário
+            
+            const searchTerm = $('#search-input').val().toLowerCase().trim();
+            $.getJSON(`/crypto-data?crypto=${searchTerm}&days=7`, function(data) {
+                if (data.error) {
+                    $("#error-message").text(data.error);
+                    return;
+                }
+
+                // ✅ Atualize os valores conforme necessário
+                $("#price").text(parseFloat(data.price).toFixed(2) + " USD");
+                $("#volume").text(parseFloat(data.volume).toFixed(2) + " USD");
+
+                // ✅ Atualize o gráfico
+                var graph = JSON.parse(data.graph);
+                Plotly.react('crypto-graph', graph.data, graph.layout);
+
+                // ✅ Atualize recomendação e certeza
+                $("#indication").text(data.indication);
+                $("#percentage-of-certainty-of-indication").text(data.certainty);
+                $("#crypto-select").val(searchTerm)
+                $("#days-select").val("7")
+            }).fail(function() {
+                $("#error-message").text("Erro ao buscar dados da API.");
+            });
+        });
+
     </script>
 </body>
 </html>
