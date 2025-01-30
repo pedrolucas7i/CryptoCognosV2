@@ -3,7 +3,7 @@
 
 
 
-CryptoCognos is a cryptocurrency dashboard that provides real-time data, technical analysis indicators, and recommendations to help users decide whether to **buy**, **sell**, or **hold** their cryptocurrency assets. It uses data from the CoinGecko API and displays it interactively with **Plotly** charts.
+CryptoCognos is a cryptocurrency dashboard that provides real-time data, technical analysis indicators, and recommendations to help users decide whether to **<span style="color:green">BUY</span>**, **<span style="color:red">SELL</span>**, or **<span style="color:blue">HOLD</span>** their cryptocurrency assets. It uses data from the CoinGecko API and displays it interactively with **Plotly** charts.
 
 ![Screenshoot](./screenshoots/FirstPage-Ripple.png)
 
@@ -16,7 +16,7 @@ CryptoCognos is a cryptocurrency dashboard that provides real-time data, technic
   - **Moving Average Convergence Divergence (MACD)**
   - **Bollinger Bands**
   - **Average Directional Index (ADX)**
-- **Recommendation Engine**: Generates a recommendation to **BUY**, **SELL**, or **HOLD** based on the calculated indicators.
+- **Recommendation Engine**: Generates a recommendation to **<span style="color:green">BUY</span>**, **<span style="color:red">SELL</span>**, or **<span style="color:blue">HOLD</span>** based on the calculated indicators.
 - **Graphical Visualization**: Interactive price graph using **Plotly** to visualize the price of a selected cryptocurrency over a given period.
 - **Customizable Search**: Allows users to search for cryptocurrencies and view the data over customizable time periods (1, 3, 7, 30 days, etc.).
 - **Flask Web App**: The app is built with **Flask** to serve the data, handle user requests, and display results on a user-friendly interface.
