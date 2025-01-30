@@ -12,6 +12,7 @@
     <div class="container-fluid border">
         <div class="row">
             <div class="container-fluid border col-4" style="width: 24vw;">
+                <!-- Dropdown to select cryptocurrency -->
                 <select id="crypto-select" class="form-select">
                     <option value="bitcoin" selected>Bitcoin</option>
                     <option value="ethereum">Ethereum</option>
@@ -19,45 +20,47 @@
                     <option value="dogecoin">Dogecoin</option>
                     <option value="litecoin">Litecoin</option>
                 </select>
+                <!-- Dropdown to select time range -->
                 <select id="days-select" class="form-select mt-2">
-                    <option value="3">3 Dias</option>
-                    <option value="7" selected>7 Dias</option>
-                    <option value="30">30 Dias</option>
-                    <option value="90">90 Dias</option>
+                    <option value="3">3 Days</option>
+                    <option value="7" selected>7 Days</option>
+                    <option value="30">30 Days</option>
+                    <option value="90">90 Days</option>
                 </select>
                 <br>
                 <div class="row">
                     <div class="col">
                         <h6>Price (USD)</h6>
                         <br>
-                        <p>{{ price }}</p>
+                        <p id="price">Loading...</p>  <!-- ✅ Updated -->
                     </div>
 
                     <div class="col">
-                        <h6>Volume (24h)</h6>
+                        <h6>Volume</h6>
                         <br>
-                        <p>{{ volume }}</p>
+                        <p id="volume">Loading...</p>  <!-- ✅ Updated -->
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-8">
                         <p>Website</p>
                     </div>
-
                     <div class="col-4">
-                        <p>{{ website }}</p>
+                        <p id="website">-</p>  <!-- ✅ Updated -->
                     </div>
                 </div>
             </div>
             <div class="container-fluid border col-8" style="width: 75vw;">
+                <!-- Crypto price graph -->
                 <div class="" id="crypto-graph"></div>
                 <div>
                     <h2 id="coin-name"></h2>
                 </div>
                 <div>
+                    <!-- Recommendation indicator -->
                     <h4 id="indication">Keep</h4>
                     <p id="percentage-of-certainty-of-indication">90% Certainty</p>
+                    <h6><strong id="error-message"></strong></h6>  <!-- ✅ Updated -->
                 </div>
             </div>
         </div>
@@ -67,22 +70,33 @@
         function fetchCryptoData() {
             var crypto = $("#crypto-select").val();
             var days = $("#days-select").val();
-            
+
             $.getJSON(`/crypto-data?crypto=${crypto}&days=${days}`, function(data) {
+                if (data.error) {
+                    $("#error-message").text(data.error);
+                    return;
+                }
+
+                // ✅ Update price and volume
+                $("#price").text(parseFloat(data.price).toFixed(2) + " USD");
+                $("#volume").text(parseFloat(data.volume).toFixed(2) + " USD");
+
+                // ✅ Update graph
                 var graph = JSON.parse(data.graph);
                 Plotly.react('crypto-graph', graph.data, graph.layout);
 
+                // ✅ Update recommendation and certainty
                 $("#indication").text(data.indication);
                 $("#percentage-of-certainty-of-indication").text(data.certainty);
+            }).fail(function() {
+                $("#error-message").text("Error fetching data from API.");
             });
         }
 
-
-
         $(document).ready(function() {
-            fetchCryptoData();
-            $("#crypto-select, #days-select").change(fetchCryptoData);
-            setInterval(fetchCryptoData, 20000);
+            fetchCryptoData();  // ✅ Fetch data initially
+            $("#crypto-select, #days-select").change(fetchCryptoData);  // ✅ Update on selection change
+            setInterval(fetchCryptoData, 20000);  // ✅ Refresh every 20 seconds
         });
     </script>
 </body>
