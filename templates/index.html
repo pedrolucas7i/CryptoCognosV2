@@ -258,7 +258,7 @@
                 // ✅ Update recommendation and certainty
                 $("#indication").text(data.indication);
                 $("#percentage-of-certainty-of-indication").text(data.certainty);
-                crypto = crypto[0].toUpperCase()
+                crypto = `${crypto[0].toUpperCase()}${crypto.slice(1)}`;
                 $("#coin-name").text(crypto);
             }).fail(function() {
                 $("#error-message").text("Error fetching data from API.");
