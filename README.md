@@ -41,7 +41,7 @@ cd CryptoCognosV2
 Install the required Python libraries using `pip`:
 
 ```bash
-pip3 install -r requirements.txt`
+pip3 install -r requirements.txt
 ```
 
 The `requirements.txt` file includes:

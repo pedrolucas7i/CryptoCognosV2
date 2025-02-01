@@ -213,11 +213,12 @@
                         <p id="volume">Loading...</p>  <!-- ✅ Updated -->
                     </div>
                 </div>
+                <br>
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col text-center">
                         <p>Website</p>
                     </div>
-                    <div class="col-4 text-center">
+                    <div class="col text-center">
                         <p id="website text-center">-</p>  <!-- ✅ Updated -->
                     </div>
                 </div>
@@ -257,6 +258,7 @@
                 // ✅ Update recommendation and certainty
                 $("#indication").text(data.indication);
                 $("#percentage-of-certainty-of-indication").text(data.certainty);
+                crypto = crypto[0].toUpperCase()
                 $("#coin-name").text(crypto);
             }).fail(function() {
                 $("#error-message").text("Error fetching data from API.");
@@ -278,7 +280,7 @@
                 const days2 = $('#days-select').val().toLowerCase().trim();
                 fetchCryptoData(coin, days2);
             });
-            setInterval(fetchCryptoData, 20000);
+            setInterval(fetchCryptoData, 30000);
 
             // Fetch the data for the selected crypto
             fetchCryptoData(cryptoFromUrl, days);
@@ -289,7 +291,7 @@
             e.preventDefault();  // Impede o envio normal do formulário
             
             const searchTerm = $('#search-input').val().toLowerCase().trim();
-            fetchCryptoData(searchTerm, 7)
+            fetchCryptoData(searchTerm, 1)
         });
 
     </script>
